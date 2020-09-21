@@ -31,17 +31,18 @@ interface popularRankingListJSON {
   page: number;
   totalPages: number;
 }
-const popularRankingStart: number = text.indexOf('rankingListModel')
-const popularRankingEnd: number = text.indexOf(',', text.indexOf('totalPages'))
-const popularRankingListModel: popularRankingListJSON = JSON.parse(text.slice(popularRankingStart + 18, popularRankingEnd))
 
-// const date: string = text.match(/today: '\d+',/)!.join().slice(8, -2)
-// const year: string = date?.slice(0, 4);
-// const month: string = date?.slice(4, 6);
-// const day: string = date?.slice(-2);
+const popularRankingStart: number = text.indexOf('rankingListModel');
+const popularRankingEnd: number = text.indexOf(',', text.indexOf('totalPages'));
+const popularRankingListModel: popularRankingListJSON = JSON.parse(text.slice(popularRankingStart + 18, popularRankingEnd));
 
-// console.log(`${year}.${month}.${day}`)
-console.log(`<많이 본 뉴스>`)
+const date: string = popularRankingListModel.date;
+const year: string = date.slice(0, 4);
+const month: string = date.slice(4, 6);
+const day: string = date.slice(-2);
+
+console.log(`날짜: ${year}.${month}.${day}`);
+console.log(`<많이 본 뉴스>`);
 popularRankingListModel.list.forEach((obj: popularObj) => {
-  console.log(`${obj.rank}위: ${obj.title}`)
-})
+  console.log(`${obj.rank}위: ${obj.title}`);
+});
